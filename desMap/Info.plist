@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CBBundleDisplayName</key>
+	<string>DesMap</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Enable location services for this to app to function</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

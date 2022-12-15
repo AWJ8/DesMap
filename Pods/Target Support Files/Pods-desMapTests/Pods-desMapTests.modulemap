@@ -1,0 +1,6 @@
+framework module Pods_desMapTests {
+  umbrella header "Pods-desMapTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
