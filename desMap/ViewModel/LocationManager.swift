@@ -4,6 +4,7 @@
 //
 //  Created by Aleksander Jasinski on 16/12/2022.
 //
+// swiftlint:disable: line_length
 
 import SwiftUI
 import CoreLocation
@@ -115,5 +116,54 @@ class LocationManager: NSObject, ObservableObject, MKMapViewDelegate, CLLocation
     func reverseLocationCoordinate(location: CLLocation) async throws -> CLPlacemark? {
         let place = try await CLGeocoder().reverseGeocodeLocation(location).first
         return place
+    }
+    func getAddress2() {
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(searchText) { (placemarks, error) in
+            guard let placemarks = placemarks, let location = placemarks.first?.location
+            else {
+                print("No location found")
+                print(error ?? "Returned NIL")
+                return
+            }
+            print(location)
+            self.mapDirections2(destinationCord: location.coordinate)
+        }
+    }
+    func mapDirections2(destinationCord: CLLocationCoordinate2D) {
+        guard let sourceCoordinate = userLocation?.coordinate else {
+            print("No location found")
+            return
+        }
+        let sourcePlaceMark = MKPlacemark(coordinate: sourceCoordinate)
+        let destPlaceMark = MKPlacemark(coordinate: destinationCord)
+        let sourceItem = MKMapItem(placemark: sourcePlaceMark)
+        let destItem = MKMapItem(placemark: destPlaceMark)
+        let destinationRequest = MKDirections.Request()
+        destinationRequest.source = sourceItem
+        destinationRequest.destination = destItem
+        destinationRequest.transportType = .automobile
+        destinationRequest.requestsAlternateRoutes = true
+        let directions = MKDirections(request: destinationRequest)
+        directions.calculate { (response, error) in
+            guard let response = response else {
+                if error != nil {
+                    print("Something went wrong")
+                }
+                return
+            }
+            self.mapView.removeOverlays(self.mapView.overlays)
+            let route = response.routes[0]
+            self.mapView.addOverlay(route.polyline)
+            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+        }
+    }
+    func updatePlaceMark(place: CLPlacemark) {
+        if let coordinate = place.location?.coordinate {
+            pickedLocation = .init(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            mapView.region = .init(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+            addDraggablePin(coordinate: coordinate)
+            updatePlacemark(location: .init(latitude: coordinate.latitude, longitude: coordinate.longitude))
+        }
     }
 }

@@ -16,7 +16,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             return
         }
         let request = MKLocalSearch(request: MKLocalSearch.Request())
-        
     }
     var matchingItems: [MKMapItem] = []
     var mapView: MKMapView?

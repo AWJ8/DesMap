@@ -4,6 +4,7 @@
 //
 //  Created by Aleksander Jasinski on 16/12/2022.
 //
+// swiftlint:disable: line_length
 
 import SwiftUI
 import MapKit
@@ -42,12 +43,7 @@ struct SwiftUIView: View {
                 List {
                     ForEach(places, id: \.self) { place in
                         Button {
-                            if let coordinate = place.location?.coordinate {
-                                locationManager.pickedLocation = .init(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                                locationManager.mapView.region = .init(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-                                locationManager.addDraggablePin(coordinate: coordinate)
-                                locationManager.updatePlacemark(location: .init(latitude: coordinate.latitude, longitude: coordinate.longitude))
-                            }
+                            locationManager.updatePlaceMark(place: place)
                             // MARK: Navigating to MapView
                             navigationTag = "MAPVIEW"
                         } label: {
@@ -65,7 +61,6 @@ struct SwiftUIView: View {
                                 }
                             }
                         }
-
                     }
                 }
                 .listStyle(.plain)
@@ -140,7 +135,7 @@ struct MapViewSelection: View {
             // MARK: Displaying Data
             if let place = locationManager.pickedPlaceMark {
                 VStack(spacing: 15) {
-                    Text("Confirm Location")
+                    Text("Is this where you want to go?")
                         .font(.title2.bold())
                     HStack(spacing: 15) {
                         Image(systemName: "mappin.circle.fill")
@@ -157,7 +152,8 @@ struct MapViewSelection: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 10)
                     Button {
-                    } label: {
+                        locationManager.getAddress2()
+                        } label: {
                         Text("Confirm Location")
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity)
