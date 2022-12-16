@@ -10,6 +10,8 @@
 		9B2D7C5FFEA7722CEBB88A60 /* Pods_desMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B5944EE97FD36EB5BEF17B /* Pods_desMapTests.framework */; };
 		D250D68729F63CED1139E8FC /* Pods_desMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AFC989FADB235505F79582 /* Pods_desMap.framework */; };
 		E42B3B44A0B11C5DA852BD97 /* Pods_desMap_desMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F923A57823F8851795C7D1E4 /* Pods_desMap_desMapUITests.framework */; };
+		E5775206294BF43D001532AA /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5775205294BF43D001532AA /* SwiftUIView.swift */; };
+		E5775209294BF64D001532AA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5775208294BF64D001532AA /* LocationManager.swift */; };
 		E598FA10294B493C00576179 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E598FA0F294B493C00576179 /* AppDelegate.swift */; };
 		E598FA12294B493C00576179 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E598FA11294B493C00576179 /* SceneDelegate.swift */; };
 		E598FA14294B493C00576179 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E598FA13294B493C00576179 /* MapViewController.swift */; };
@@ -19,7 +21,6 @@
 		E598FA27294B493E00576179 /* desMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E598FA26294B493E00576179 /* desMapTests.swift */; };
 		E598FA31294B493E00576179 /* desMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E598FA30294B493E00576179 /* desMapUITests.swift */; };
 		E598FA33294B493E00576179 /* desMapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E598FA32294B493E00576179 /* desMapUITestsLaunchTests.swift */; };
-		E5AC6634294BD045009D0E9F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC6633294BD045009D0E9F /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		941877947DA5BDFDFA75E798 /* Pods-desMap-desMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-desMap-desMapUITests.release.xcconfig"; path = "Target Support Files/Pods-desMap-desMapUITests/Pods-desMap-desMapUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B3AFC989FADB235505F79582 /* Pods_desMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_desMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4B5944EE97FD36EB5BEF17B /* Pods_desMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_desMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5775205294BF43D001532AA /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		E5775208294BF64D001532AA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E598FA0C294B493C00576179 /* DesMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E598FA0F294B493C00576179 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E598FA11294B493C00576179 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +64,6 @@
 		E598FA2C294B493E00576179 /* DesMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DesMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E598FA30294B493E00576179 /* desMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = desMapUITests.swift; sourceTree = "<group>"; };
 		E598FA32294B493E00576179 /* desMapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = desMapUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E5AC6633294BD045009D0E9F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F923A57823F8851795C7D1E4 /* Pods_desMap_desMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_desMap_desMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E5775207294BF632001532AA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E5775208294BF64D001532AA /* LocationManager.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E598FA03294B493C00576179 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +141,7 @@
 		E598FA0E294B493C00576179 /* desMap */ = {
 			isa = PBXGroup;
 			children = (
+				E5775207294BF632001532AA /* ViewModel */,
 				E5AC6635294BD231009D0E9F /* ViewController */,
 				E598FA0F294B493C00576179 /* AppDelegate.swift */,
 				E598FA11294B493C00576179 /* SceneDelegate.swift */,
@@ -163,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				E598FA13294B493C00576179 /* MapViewController.swift */,
-				E5AC6633294BD045009D0E9F /* SearchViewController.swift */,
+				E5775205294BF43D001532AA /* SwiftUIView.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -401,7 +412,8 @@
 			files = (
 				E598FA14294B493C00576179 /* MapViewController.swift in Sources */,
 				E598FA10294B493C00576179 /* AppDelegate.swift in Sources */,
-				E5AC6634294BD045009D0E9F /* SearchViewController.swift in Sources */,
+				E5775206294BF43D001532AA /* SwiftUIView.swift in Sources */,
+				E5775209294BF64D001532AA /* LocationManager.swift in Sources */,
 				E598FA12294B493C00576179 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
