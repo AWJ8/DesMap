@@ -10,6 +10,7 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+    weak var viewModel: LocationManager!
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!

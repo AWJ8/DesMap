@@ -13,6 +13,7 @@ import MapKit
 import Combine
 
 class LocationManager: NSObject, ObservableObject, MKMapViewDelegate, CLLocationManagerDelegate {
+    weak var coordinator: AppCoordinator!
     // MARK: Properties
     @Published var mapView: MKMapView = .init()
     @Published var manager: CLLocationManager = .init()

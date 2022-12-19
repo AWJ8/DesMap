@@ -10,6 +10,7 @@
 		9B2D7C5FFEA7722CEBB88A60 /* Pods_desMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B5944EE97FD36EB5BEF17B /* Pods_desMapTests.framework */; };
 		D250D68729F63CED1139E8FC /* Pods_desMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AFC989FADB235505F79582 /* Pods_desMap.framework */; };
 		E42B3B44A0B11C5DA852BD97 /* Pods_desMap_desMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F923A57823F8851795C7D1E4 /* Pods_desMap_desMapUITests.framework */; };
+		E5465957295065280019E98C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5465956295065280019E98C /* Coordinator.swift */; };
 		E5775206294BF43D001532AA /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5775205294BF43D001532AA /* SwiftUIView.swift */; };
 		E5775209294BF64D001532AA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5775208294BF64D001532AA /* LocationManager.swift */; };
 		E598FA10294B493C00576179 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E598FA0F294B493C00576179 /* AppDelegate.swift */; };
@@ -49,6 +50,7 @@
 		941877947DA5BDFDFA75E798 /* Pods-desMap-desMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-desMap-desMapUITests.release.xcconfig"; path = "Target Support Files/Pods-desMap-desMapUITests/Pods-desMap-desMapUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B3AFC989FADB235505F79582 /* Pods_desMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_desMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4B5944EE97FD36EB5BEF17B /* Pods_desMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_desMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5465956295065280019E98C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E5775205294BF43D001532AA /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		E5775208294BF64D001532AA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E598FA0C294B493C00576179 /* DesMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E5465955295065160019E98C /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				E5465956295065280019E98C /* Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		E5775207294BF632001532AA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +151,7 @@
 		E598FA0E294B493C00576179 /* desMap */ = {
 			isa = PBXGroup;
 			children = (
+				E5465955295065160019E98C /* Coordinator */,
 				E5775207294BF632001532AA /* ViewModel */,
 				E5AC6635294BD231009D0E9F /* ViewController */,
 				E598FA0F294B493C00576179 /* AppDelegate.swift */,
@@ -412,6 +423,7 @@
 			files = (
 				E598FA14294B493C00576179 /* MapViewController.swift in Sources */,
 				E598FA10294B493C00576179 /* AppDelegate.swift in Sources */,
+				E5465957295065280019E98C /* Coordinator.swift in Sources */,
 				E5775206294BF43D001532AA /* SwiftUIView.swift in Sources */,
 				E5775209294BF64D001532AA /* LocationManager.swift in Sources */,
 				E598FA12294B493C00576179 /* SceneDelegate.swift in Sources */,
