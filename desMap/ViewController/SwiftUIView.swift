@@ -16,12 +16,6 @@ struct SwiftUIView: View {
     var body: some View {
         VStack {
             HStack(spacing: 15) {
-                Button {
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.title3)
-                        .foregroundColor(.primary)
-                }
                 Text("Search Location")
                     .font(.title3)
                     .fontWeight(.semibold)
@@ -152,7 +146,7 @@ struct MapViewSelection: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 10)
                     Button {
-                        locationManager.getAddress2()
+                        locationManager.getAddress()
                         } label: {
                         Text("Confirm Location")
                             .fontWeight(.semibold)

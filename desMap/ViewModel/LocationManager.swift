@@ -31,7 +31,10 @@ class LocationManager: NSObject, ObservableObject, MKMapViewDelegate, CLLocation
         manager.delegate = self
         mapView.delegate = self
         // MARK: Requesting Location Access
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestAlwaysAuthorization()
         manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
         // MARK: Search Textfield Watching
         cancellable = $searchText
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
@@ -59,6 +62,8 @@ class LocationManager: NSObject, ObservableObject, MKMapViewDelegate, CLLocation
                 })
             } catch {
                 // MARK: Handle Error
+                print("fetchPlaces function failed")
+                print(error)
             }
         }
     }
@@ -68,6 +73,12 @@ class LocationManager: NSObject, ObservableObject, MKMapViewDelegate, CLLocation
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else {return}
         self.userLocation = currentLocation
+        if let location = locations.first {
+            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+            let region = MKCoordinateRegion(center: location.coordinate, span: span)
+            mapView.setRegion(region, animated: true)
+        }
+        print("MapVM\(locations)")
     }
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
@@ -85,7 +96,7 @@ class LocationManager: NSObject, ObservableObject, MKMapViewDelegate, CLLocation
     func addDraggablePin(coordinate: CLLocationCoordinate2D) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
-        annotation.title = "Placeholder text"
+        annotation.title = pickedPlaceMark?.locality
         mapView.addAnnotation(annotation)
     }
     // MARK: Enabling Dragging
@@ -109,6 +120,7 @@ class LocationManager: NSObject, ObservableObject, MKMapViewDelegate, CLLocation
                 })
             } catch {
                 // MARK: Handle Error
+                print("Failed updatePlacemark")
             }
         }
     }
@@ -117,22 +129,35 @@ class LocationManager: NSObject, ObservableObject, MKMapViewDelegate, CLLocation
         let place = try await CLGeocoder().reverseGeocodeLocation(location).first
         return place
     }
-    func getAddress2() {
+    func getAddress() {
         let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(searchText) { (placemarks, error) in
+        geoCoder.geocodeAddressString(pickedPlaceMark?.name ?? "") { (placemarks, error) in
             guard let placemarks = placemarks, let location = placemarks.first?.location
             else {
-                print("No location found")
-                print(error ?? "Returned NIL")
+                print("No location found gA2")
+                print("Returned error: \(String(describing: error))" )
                 return
             }
             print(location)
-            self.mapDirections2(destinationCord: location.coordinate)
+            self.mapDirections(destinationCord: location.coordinate)
         }
     }
-    func mapDirections2(destinationCord: CLLocationCoordinate2D) {
+    func getAddressMVC(input: String) {
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(input) { (placemarks, error) in
+            guard let placemarks = placemarks, let location = placemarks.first?.location
+            else {
+                print("No location found gAMVC")
+                print("Returned error: \(String(describing: error))" )
+                return
+            }
+            print(location)
+            self.mapDirections(destinationCord: location.coordinate)
+        }
+    }
+    func mapDirections(destinationCord: CLLocationCoordinate2D) {
         guard let sourceCoordinate = userLocation?.coordinate else {
-            print("No location found")
+            print("No location found mD")
             return
         }
         let sourcePlaceMark = MKPlacemark(coordinate: sourceCoordinate)
@@ -165,5 +190,12 @@ class LocationManager: NSObject, ObservableObject, MKMapViewDelegate, CLLocation
             addDraggablePin(coordinate: coordinate)
             updatePlacemark(location: .init(latitude: coordinate.latitude, longitude: coordinate.longitude))
         }
+    }
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        // swiftlint:disable force_cast
+        let render = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        // swiftloint:enable force_cast
+        render.strokeColor = .systemGreen
+        return render
     }
 }
